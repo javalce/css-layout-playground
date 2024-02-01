@@ -10,6 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { capitalizeFirstLetter } from '@/lib/utils';
 import { THEMES } from '@/models/theme';
 
 export function ThemeToggle() {
@@ -27,7 +28,7 @@ export function ThemeToggle() {
       <DropdownMenuContent align='end'>
         {Object.entries(THEMES).map(([key, value]) => (
           <DropdownMenuItem key={key} onClick={() => setTheme(value)}>
-            {value.replace(/^./, value[0].toUpperCase())}
+            {capitalizeFirstLetter(key)}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
