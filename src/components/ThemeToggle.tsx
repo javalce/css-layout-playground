@@ -28,7 +28,7 @@ export function ThemeToggle() {
       <DropdownMenuContent align='end'>
         {Object.entries(THEMES).map(([key, value]) => (
           <DropdownMenuItem key={key} onClick={() => setTheme(value)}>
-            {capitalizeFirstLetter(key)}
+            {capitalizeFirstLetter(value)}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
