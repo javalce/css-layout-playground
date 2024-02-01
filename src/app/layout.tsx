@@ -1,3 +1,4 @@
+import { Header } from '@/components/Header';
 import { cn } from '@/lib/utils';
 import { ThemeProvider } from '@/providers/theme';
 import type { Metadata } from 'next';
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           attribute='class'
           defaultTheme='system'
         >
+          <Header />
           {children}
         </ThemeProvider>
       </body>

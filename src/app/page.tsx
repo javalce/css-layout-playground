@@ -1,4 +1,3 @@
-import { ThemeToggle } from '@/components/ThemeToggle';
 import Image from 'next/image';
 
 export default function Home() {
@@ -26,7 +25,6 @@ export default function Home() {
               width={100}
             />
           </a>
-          <ThemeToggle />
         </div>
       </div>
 
