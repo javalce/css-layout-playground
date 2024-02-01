@@ -11,7 +11,7 @@ export function Header() {
       <div className='container flex h-14 max-w-screen-2xl items-center'>
         <div className='mr-4 hidden md:flex'>
           <a className='mr-6 flex items-center space-x-2' href='/'>
-            <span className='hidden font-bold sm:inline-block'>CSS Layout Playground</span>
+            <span className='hidden text-3xl font-bold sm:inline-block'>CSS Layout Playground</span>
           </a>
         </div>
         <div className='flex flex-1 items-center justify-between space-x-2 md:justify-end'>
