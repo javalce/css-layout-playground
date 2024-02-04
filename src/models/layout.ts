@@ -3,6 +3,13 @@ export const LAYOUT_TYPES = {
   GRID: 'grid',
 } as const;
 
+export const FLEXBOX_LAYOUT_PROPERTIES = {
+  flexDirection: 'flexDirection',
+  flexWrap: 'flexWrap',
+  justifyContent: 'justifyContent',
+  alignItems: 'alignItems',
+} as const;
+
 export const FLEXBOX_DIRECTIONS = {
   row: 'row',
   rowReverse: 'row-reverse',
