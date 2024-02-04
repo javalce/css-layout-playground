@@ -1,29 +1,44 @@
 'use client';
 
-import { FLEXBOX_ALIGN, FLEXBOX_DIRECTIONS, FLEXBOX_JUSTIFY, FLEXBOX_WRAP } from '@/models/layout';
-import { useFlexboxStore } from '@/store/flexbox.store';
+import { useFlexbox } from '@/hooks/flexbox.hook';
+import {
+  FLEXBOX_ALIGN,
+  FLEXBOX_DIRECTIONS,
+  FLEXBOX_JUSTIFY,
+  FLEXBOX_LAYOUT_PROPERTIES,
+  FLEXBOX_WRAP,
+} from '@/models/layout';
 import FlexboxOption from './FlexboxOption';
 
 export function FlexboxOptions() {
-  const flexboxDirection = useFlexboxStore((state) => state.flexDirection);
-  const flexboxWrap = useFlexboxStore((state) => state.flexWrap);
-  const flexboxJustifyContent = useFlexboxStore((state) => state.justifyContent);
-  const flexboxAlignItems = useFlexboxStore((state) => state.alignItems);
+  const { flexboxDirection, flexboxWrap, flexboxJustifyContent, flexboxAlignItems } = useFlexbox();
 
   return (
     <section className='flex flex-col gap-y-5'>
       <FlexboxOption
         data={FLEXBOX_DIRECTIONS}
         defaultValue={flexboxDirection}
+        property={FLEXBOX_LAYOUT_PROPERTIES.flexDirection}
         title='Flex Direction'
       />
-      <FlexboxOption data={FLEXBOX_WRAP} defaultValue={flexboxWrap} title='Flex Wrap' />
+      <FlexboxOption
+        data={FLEXBOX_WRAP}
+        defaultValue={flexboxWrap}
+        property={FLEXBOX_LAYOUT_PROPERTIES.flexWrap}
+        title='Flex Wrap'
+      />
       <FlexboxOption
         data={FLEXBOX_JUSTIFY}
         defaultValue={flexboxJustifyContent}
+        property={FLEXBOX_LAYOUT_PROPERTIES.justifyContent}
         title='Justify Content'
       />
-      <FlexboxOption data={FLEXBOX_ALIGN} defaultValue={flexboxAlignItems} title='Align Items' />
+      <FlexboxOption
+        data={FLEXBOX_ALIGN}
+        defaultValue={flexboxAlignItems}
+        property={FLEXBOX_LAYOUT_PROPERTIES.alignItems}
+        title='Align Items'
+      />
     </section>
   );
 }
