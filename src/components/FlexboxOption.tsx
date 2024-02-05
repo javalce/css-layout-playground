@@ -26,7 +26,7 @@ export default function FlexboxOption({
     <article>
       <p className='mb-2 text-lg font-medium'>{title}</p>
       <Select defaultValue={defaultValue} onValueChange={handleUpdateValue}>
-        <SelectTrigger className='w-[180px]'>
+        <SelectTrigger>
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent>
