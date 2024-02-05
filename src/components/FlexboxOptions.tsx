@@ -18,24 +18,28 @@ export function FlexboxOptions() {
       <FlexboxOption
         data={FLEXBOX_DIRECTIONS}
         defaultValue={flexboxDirection}
+        placeholder='Select flexbox direction'
         property={FLEXBOX_LAYOUT_PROPERTIES.flexDirection}
         title='Flex Direction'
       />
       <FlexboxOption
         data={FLEXBOX_WRAP}
         defaultValue={flexboxWrap}
+        placeholder='Select flexbox wrap'
         property={FLEXBOX_LAYOUT_PROPERTIES.flexWrap}
         title='Flex Wrap'
       />
       <FlexboxOption
         data={FLEXBOX_JUSTIFY}
         defaultValue={flexboxJustifyContent}
+        placeholder='Select justify content'
         property={FLEXBOX_LAYOUT_PROPERTIES.justifyContent}
         title='Justify Content'
       />
       <FlexboxOption
         data={FLEXBOX_ALIGN}
         defaultValue={flexboxAlignItems}
+        placeholder='Select align items'
         property={FLEXBOX_LAYOUT_PROPERTIES.alignItems}
         title='Align Items'
       />
