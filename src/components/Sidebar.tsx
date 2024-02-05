@@ -1,14 +1,16 @@
 import { capitalizeFirstLetter } from '@/lib/utils';
 import { LAYOUT_TYPES } from '@/models/layout';
+import AddItem from './AddItem';
 import { FlexboxOptions } from './FlexboxOptions';
-import { Button } from './ui/button';
+import RemoveItem from './RemoveItem';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 
 export default function Sidebar() {
   return (
     <aside className='flex flex-col gap-y-5 p-2 [grid-area:options]'>
-      <Button className=''>Add Item</Button>
+      <AddItem />
+      <RemoveItem />
       <section>
         <Select defaultValue={LAYOUT_TYPES.FLEXBOX}>
           <SelectTrigger className=''>
