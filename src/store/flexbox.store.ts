@@ -1,8 +1,6 @@
+import type { FlexboxAlignSelf } from '@/models/layout';
 import {
-  FLEXBOX_ALIGN,
-  FLEXBOX_DIRECTIONS,
-  FLEXBOX_JUSTIFY,
-  FLEXBOX_WRAP,
+  FLEXBOX_DEFAULTS,
   type FlexboxAlign,
   type FlexboxDirection,
   type FlexboxJustify,
@@ -15,6 +13,10 @@ interface FlexboxState {
   flexWrap: FlexboxWrap;
   justifyContent: FlexboxJustify;
   alignItems: FlexboxAlign;
+  order: number[];
+  flexGrow: number[];
+  flexShrink: number[];
+  alignSelf: FlexboxAlignSelf[];
 }
 
 interface FlexboxStore extends FlexboxState {
@@ -22,9 +24,13 @@ interface FlexboxStore extends FlexboxState {
 }
 
 export const useFlexboxStore = create<FlexboxStore>()((set, get) => ({
-  flexDirection: FLEXBOX_DIRECTIONS.row,
-  flexWrap: FLEXBOX_WRAP.wrap,
-  justifyContent: FLEXBOX_JUSTIFY.flexStart,
-  alignItems: FLEXBOX_ALIGN.stretch,
+  flexDirection: FLEXBOX_DEFAULTS.flexDirection,
+  flexWrap: FLEXBOX_DEFAULTS.flexWrap,
+  justifyContent: FLEXBOX_DEFAULTS.justifyContent,
+  alignItems: FLEXBOX_DEFAULTS.alignItems,
+  order: [],
+  flexGrow: [],
+  flexShrink: [],
+  alignSelf: [],
   update: (state) => set({ ...get(), ...state }),
 }));
