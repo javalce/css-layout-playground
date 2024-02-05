@@ -6,11 +6,13 @@ export default function FlexboxOption({
   defaultValue,
   data,
   property,
+  placeholder,
 }: {
   title: string;
   defaultValue: string;
   data: Record<string, string>;
   property: string;
+  placeholder: string;
 }) {
   const { update } = useFlexbox();
 
@@ -25,7 +27,7 @@ export default function FlexboxOption({
       <p className='mb-2 text-lg font-medium'>{title}</p>
       <Select defaultValue={defaultValue} onValueChange={handleUpdateValue}>
         <SelectTrigger className='w-[180px]'>
-          <SelectValue placeholder='Select a layout type' />
+          <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent>
           {Object.entries(data).map(([key, value]) => (
