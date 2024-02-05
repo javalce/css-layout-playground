@@ -22,6 +22,7 @@ interface FlexboxState {
 interface FlexboxStore extends FlexboxState {
   update: (state: Partial<FlexboxState>) => void;
   reset: () => void;
+  addItem: () => void;
 }
 
 export const useFlexboxStore = create<FlexboxStore>()((set, get) => ({
@@ -45,4 +46,19 @@ export const useFlexboxStore = create<FlexboxStore>()((set, get) => ({
       flexShrink: [],
       alignSelf: [],
     }),
+  addItem: () => {
+    const { order, flexGrow, flexShrink, alignSelf } = get();
+
+    const newOrder = [...order, FLEXBOX_DEFAULTS.order];
+    const newFlexGrow = [...flexGrow, FLEXBOX_DEFAULTS.flexGrow];
+    const newFlexShrink = [...flexShrink, FLEXBOX_DEFAULTS.flexShrink];
+    const newAlignSelf = [...alignSelf, FLEXBOX_DEFAULTS.alignSelf];
+
+    set({
+      order: newOrder,
+      flexGrow: newFlexGrow,
+      flexShrink: newFlexShrink,
+      alignSelf: newAlignSelf,
+    });
+  },
 }));

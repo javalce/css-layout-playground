@@ -1,10 +1,10 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { useContainerStore } from '@/store/container.store';
+import { useItem } from '@/hooks/item.hook';
 
 export default function AddItem() {
-  const addItem = useContainerStore((state) => state.addItem);
+  const { addItem } = useItem();
 
   return <Button onClick={addItem}>Add Item</Button>;
 }
