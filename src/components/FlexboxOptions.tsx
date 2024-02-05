@@ -8,13 +8,14 @@ import {
   FLEXBOX_LAYOUT_PROPERTIES,
   FLEXBOX_WRAP,
 } from '@/models/layout';
+import { FlexboxContainer } from './FlexboxContainer';
 import FlexboxOption from './FlexboxOption';
 
 export function FlexboxOptions() {
   const { flexboxDirection, flexboxWrap, flexboxJustifyContent, flexboxAlignItems } = useFlexbox();
 
   return (
-    <section className='flex flex-col gap-y-5'>
+    <FlexboxContainer>
       <FlexboxOption
         data={FLEXBOX_DIRECTIONS}
         defaultValue={flexboxDirection}
@@ -43,6 +44,6 @@ export function FlexboxOptions() {
         property={FLEXBOX_LAYOUT_PROPERTIES.alignItems}
         title='Align Items'
       />
-    </section>
+    </FlexboxContainer>
   );
 }
