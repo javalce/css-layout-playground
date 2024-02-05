@@ -21,6 +21,7 @@ interface FlexboxState {
 
 interface FlexboxStore extends FlexboxState {
   update: (state: Partial<FlexboxState>) => void;
+  reset: () => void;
 }
 
 export const useFlexboxStore = create<FlexboxStore>()((set, get) => ({
@@ -33,4 +34,15 @@ export const useFlexboxStore = create<FlexboxStore>()((set, get) => ({
   flexShrink: [],
   alignSelf: [],
   update: (state) => set({ ...get(), ...state }),
+  reset: () =>
+    set({
+      flexDirection: FLEXBOX_DEFAULTS.flexDirection,
+      flexWrap: FLEXBOX_DEFAULTS.flexWrap,
+      justifyContent: FLEXBOX_DEFAULTS.justifyContent,
+      alignItems: FLEXBOX_DEFAULTS.alignItems,
+      order: [],
+      flexGrow: [],
+      flexShrink: [],
+      alignSelf: [],
+    }),
 }));

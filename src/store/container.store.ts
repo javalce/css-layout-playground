@@ -6,6 +6,7 @@ interface ContainerStore {
   selectItem: (index: number) => void;
   addItem: () => void;
   removeItem: () => void;
+  reset: () => void;
 }
 
 export const useContainerStore = create<ContainerStore>()((set, get) => ({
@@ -13,11 +14,7 @@ export const useContainerStore = create<ContainerStore>()((set, get) => ({
   selectedItemIndex: -1,
   selectItem: (index) => set({ selectedItemIndex: index }),
   addItem: () => {
-    const { numItems, selectedItemIndex } = get();
-
-    if (selectedItemIndex === -1) {
-      return;
-    }
+    const { numItems } = get();
 
     const newNumItems = numItems + 1;
 
@@ -34,4 +31,5 @@ export const useContainerStore = create<ContainerStore>()((set, get) => ({
 
     set({ numItems: newNumItems, selectedItemIndex: -1 });
   },
+  reset: () => set({ numItems: 0, selectedItemIndex: -1 }),
 }));
