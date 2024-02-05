@@ -1,6 +1,7 @@
 import { capitalizeFirstLetter } from '@/lib/utils';
 import { LAYOUT_TYPES } from '@/models/layout';
 import AddItem from './AddItem';
+import { FlexboxItemOptions } from './FlexboxItemOptions';
 import { FlexboxOptions } from './FlexboxOptions';
 import RemoveItem from './RemoveItem';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
@@ -34,7 +35,7 @@ export default function Sidebar() {
           <FlexboxOptions />
         </TabsContent>
         <TabsContent className='mt-10' value='item'>
-          <div>Item css options</div>
+          <FlexboxItemOptions />
         </TabsContent>
       </Tabs>
     </aside>
