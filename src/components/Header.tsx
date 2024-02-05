@@ -1,8 +1,8 @@
 'use client';
 
+import { ResetLayout } from './ResetLayout';
 import { ThemeToggle } from './ThemeToggle';
 import { GithubIcon } from './icons/Github';
-import { Button } from './ui/button';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from './ui/navigation-menu';
 
 export function Header() {
@@ -18,7 +18,7 @@ export function Header() {
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <Button variant='outline'>Reset to defaults</Button>
+                <ResetLayout />
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
