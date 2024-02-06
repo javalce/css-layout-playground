@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { useContainerStore } from '@/store/container.store';
 
-export default function RemoveItem() {
+export function RemoveItem() {
   const removeItem = useContainerStore((state) => state.removeItem);
   const selectedItemIndex = useContainerStore((state) => state.selectedItemIndex);
 

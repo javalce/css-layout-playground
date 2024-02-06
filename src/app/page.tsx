@@ -1,6 +1,6 @@
-import Markup from '@/components/Markup';
-import Playground from '@/components/Playground';
-import Sidebar from '@/components/Sidebar';
+import { Markup } from '@/components/Markup';
+import { Playground } from '@/components/Playground';
+import { Sidebar } from '@/components/Sidebar';
 
 export default function Home() {
   return (

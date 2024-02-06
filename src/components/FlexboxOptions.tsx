@@ -9,7 +9,7 @@ import {
   FLEXBOX_WRAP,
 } from '@/models/layout';
 import { FlexboxContainer } from './FlexboxContainer';
-import FlexboxOption from './FlexboxOption';
+import { FlexboxOption } from './FlexboxOption';
 
 export function FlexboxOptions() {
   const { flexboxDirection, flexboxWrap, flexboxJustifyContent, flexboxAlignItems } = useFlexbox();

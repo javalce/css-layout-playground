@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import { useContainerStore } from '@/store/container.store';
 
-export default function Item({ index }: { index: number }) {
+export function Item({ index }: { index: number }) {
   const selectedItemIndex = useContainerStore((state) => state.selectedItemIndex);
   const selectItem = useContainerStore((state) => state.selectItem);
 
