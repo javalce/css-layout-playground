@@ -20,4 +20,4 @@ export const FLEXBOX_DEFAULTS = {
 
 export const DEFAULT_NUM_ITEMS = 5;
 
-export const DEFAULT_SELECTED_ITEM_INDEX = 1;
+export const DEFAULT_SELECTED_ITEM_INDEX = -1;
