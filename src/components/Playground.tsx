@@ -2,7 +2,7 @@
 
 import { useFlexbox } from '@/hooks/flexbox.hook';
 import { useContainerStore } from '@/store/container.store';
-import Item from './Item';
+import { Item } from './Item';
 
 export function Playground() {
   const { flexboxDirection, flexboxWrap, flexboxJustifyContent, flexboxAlignItems } = useFlexbox();
