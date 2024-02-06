@@ -31,10 +31,10 @@ export const useFlexboxStore = create<FlexboxStore>()((set, get) => ({
   flexWrap: FLEXBOX_DEFAULTS.flexWrap,
   justifyContent: FLEXBOX_DEFAULTS.justifyContent,
   alignItems: FLEXBOX_DEFAULTS.alignItems,
-  order: [],
-  flexGrow: [],
-  flexShrink: [],
-  alignSelf: [],
+  order: Array.from({ length: DEFAULT_NUM_ITEMS }, () => FLEXBOX_DEFAULTS.order),
+  flexGrow: Array.from({ length: DEFAULT_NUM_ITEMS }, () => FLEXBOX_DEFAULTS.flexGrow),
+  flexShrink: Array.from({ length: DEFAULT_NUM_ITEMS }, () => FLEXBOX_DEFAULTS.flexShrink),
+  alignSelf: Array.from({ length: DEFAULT_NUM_ITEMS }, () => FLEXBOX_DEFAULTS.alignSelf),
   update: (state) => set({ ...get(), ...state }),
   reset: () => {
     const items = Array.from({ length: DEFAULT_NUM_ITEMS });
