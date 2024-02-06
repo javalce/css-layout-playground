@@ -1,7 +1,7 @@
 import { useFlexbox } from '@/hooks/flexbox.hook';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 
-export function FlexboxOption({
+export function OptionsSelector({
   title,
   defaultValue,
   data,
