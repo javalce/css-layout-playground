@@ -11,9 +11,12 @@ export function Item({ index }: { index: number }) {
 
   return (
     <div
-      className={cn('size-20 bg-gray-200 text-gray-800', {
-        'border-2 border-blue-500': selectedItemIndex === index,
-      })}
+      className={cn(
+        'flex size-20 cursor-pointer items-center justify-center bg-gray-200 text-2xl text-gray-800 hover:border-2 hover:border-blue-800',
+        {
+          'border-2 border-blue-500': selectedItemIndex === index,
+        },
+      )}
       onClick={handleClick}
     >
       {index}
