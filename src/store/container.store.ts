@@ -30,7 +30,7 @@ export const useContainerStore = create<ContainerStore>()((set, get) => ({
 
     const newNumItems = numItems - 1;
 
-    set({ numItems: newNumItems, selectedItemIndex: -1 });
+    set({ numItems: newNumItems, selectedItemIndex: DEFAULT_SELECTED_ITEM_INDEX });
   },
-  reset: () => set({ numItems: 0, selectedItemIndex: -1 }),
+  reset: () => set({ numItems: DEFAULT_NUM_ITEMS, selectedItemIndex: DEFAULT_SELECTED_ITEM_INDEX }),
 }));
