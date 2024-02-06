@@ -1,4 +1,5 @@
 import { useFlexbox } from '@/hooks/flexbox.hook';
+import { Label } from './ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 
 export function OptionsSelector({
@@ -23,8 +24,8 @@ export function OptionsSelector({
   };
 
   return (
-    <article>
-      <p className='mb-2 text-lg font-medium'>{title}</p>
+    <article className='flex flex-col gap-y-2'>
+      <Label className='text-base font-semibold'>{title}</Label>
       <Select defaultValue={defaultValue} onValueChange={handleUpdateValue}>
         <SelectTrigger>
           <SelectValue placeholder={placeholder} />
