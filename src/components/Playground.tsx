@@ -19,7 +19,7 @@ export function Playground() {
       }}
     >
       {Array.from({ length: numItems }, (_, index) => (
-        <Item key={index} index={index} />
+        <Item key={index} index={index} label={`${index + 1}`} />
       ))}
     </main>
   );

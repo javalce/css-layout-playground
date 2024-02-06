@@ -1,12 +1,14 @@
 import { cn } from '@/lib/utils';
 import { useContainerStore } from '@/store/container.store';
 
-export function Item({ index }: { index: number }) {
+export function Item({ index, label }: { index: number; label: string }) {
   const selectedItemIndex = useContainerStore((state) => state.selectedItemIndex);
   const selectItem = useContainerStore((state) => state.selectItem);
 
   const handleClick = () => {
-    selectItem(index);
+    const newIndex = selectedItemIndex === index ? -1 : index;
+
+    selectItem(newIndex);
   };
 
   return (
@@ -19,7 +21,7 @@ export function Item({ index }: { index: number }) {
       )}
       onClick={handleClick}
     >
-      {index}
+      {label}
     </div>
   );
 }
