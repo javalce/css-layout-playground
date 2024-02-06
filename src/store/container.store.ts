@@ -1,3 +1,4 @@
+import { DEFAULT_NUM_ITEMS, DEFAULT_SELECTED_ITEM_INDEX } from '@/models/defaults';
 import { create } from 'zustand';
 
 interface ContainerStore {
@@ -10,8 +11,8 @@ interface ContainerStore {
 }
 
 export const useContainerStore = create<ContainerStore>()((set, get) => ({
-  numItems: 0,
-  selectedItemIndex: -1,
+  numItems: DEFAULT_NUM_ITEMS,
+  selectedItemIndex: DEFAULT_SELECTED_ITEM_INDEX,
   selectItem: (index) => set({ selectedItemIndex: index }),
   addItem: () => {
     const { numItems } = get();

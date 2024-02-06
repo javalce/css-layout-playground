@@ -1,10 +1,10 @@
-import type { FlexboxAlignSelf } from '@/models/layout';
-import {
-  FLEXBOX_DEFAULTS,
-  type FlexboxAlign,
-  type FlexboxDirection,
-  type FlexboxJustify,
-  type FlexboxWrap,
+import { FLEXBOX_DEFAULTS } from '@/models/defaults';
+import type {
+  FlexboxAlign,
+  FlexboxAlignSelf,
+  FlexboxDirection,
+  FlexboxJustify,
+  FlexboxWrap,
 } from '@/models/layout';
 import { create } from 'zustand';
 

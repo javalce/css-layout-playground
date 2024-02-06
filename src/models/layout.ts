@@ -58,15 +58,3 @@ export const FLEXBOX_ALIGN_SELF = {
 } as const;
 
 export type FlexboxAlignSelf = (typeof FLEXBOX_ALIGN_SELF)[keyof typeof FLEXBOX_ALIGN_SELF];
-
-export const FLEXBOX_DEFAULTS = {
-  flexDirection: FLEXBOX_DIRECTIONS.row,
-  flexWrap: FLEXBOX_WRAP.wrap,
-  justifyContent: FLEXBOX_JUSTIFY.flexStart,
-  alignItems: FLEXBOX_ALIGN.stretch,
-  order: 0,
-  flexGrow: 0,
-  flexShrink: 1,
-  flexBasis: 'auto',
-  alignSelf: FLEXBOX_ALIGN_SELF.auto,
-} as const;
