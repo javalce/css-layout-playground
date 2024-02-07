@@ -1,9 +1,13 @@
+import { useItem } from '@/hooks/item.hook';
 import { cn } from '@/lib/utils';
 import { useContainerStore } from '@/store/container.store';
 
 export function Item({ index, label }: { index: number; label: string }) {
   const selectedItemIndex = useContainerStore((state) => state.selectedItemIndex);
   const selectItem = useContainerStore((state) => state.selectItem);
+  const { getFlexboxItem } = useItem();
+
+  const style = getFlexboxItem(index);
 
   const handleClick = () => {
     const newIndex = selectedItemIndex === index ? -1 : index;
@@ -19,6 +23,7 @@ export function Item({ index, label }: { index: number; label: string }) {
           'border-2 border-blue-500': selectedItemIndex === index,
         },
       )}
+      style={style}
       onClick={handleClick}
     >
       {label}
