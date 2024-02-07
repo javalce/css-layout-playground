@@ -3,20 +3,33 @@ import type {
   FlexboxAlign,
   FlexboxAlignSelf,
   FlexboxDirection,
+  FlexboxItemProperty,
   FlexboxJustify,
   FlexboxWrap,
 } from '@/models/layout';
 import { create } from 'zustand';
 
-interface FlexboxState {
+interface FlexboxConatinerState {
   flexDirection: FlexboxDirection;
   flexWrap: FlexboxWrap;
   justifyContent: FlexboxJustify;
   alignItems: FlexboxAlign;
+}
+
+interface FlexboxItemState {
   order: number[];
   flexGrow: number[];
   flexShrink: number[];
   alignSelf: FlexboxAlignSelf[];
+}
+
+interface FlexboxState extends FlexboxConatinerState, FlexboxItemState {}
+
+export interface FlexboxItem {
+  order: number;
+  flexGrow: number;
+  flexShrink: number;
+  alignSelf: FlexboxAlignSelf;
 }
 
 interface FlexboxStore extends FlexboxState {
@@ -24,6 +37,11 @@ interface FlexboxStore extends FlexboxState {
   reset: () => void;
   addItem: () => void;
   removeItem: (index: number) => void;
+  updateItemProperty: (
+    index: number,
+    propertyName: FlexboxItemProperty,
+    state: Partial<FlexboxItem>,
+  ) => void;
 }
 
 export const useFlexboxStore = create<FlexboxStore>()((set, get) => ({
@@ -84,5 +102,16 @@ export const useFlexboxStore = create<FlexboxStore>()((set, get) => ({
       flexShrink: newFlexShrink,
       alignSelf: newAlignSelf,
     });
+  },
+  updateItemProperty: (index, propertyName, state) => {
+    const oldState = get();
+    const newState: (number | FlexboxAlignSelf)[] = [...oldState[propertyName]];
+    const value = state[propertyName];
+
+    if (value === undefined) return;
+
+    newState.splice(index, 1, value);
+
+    set({ [propertyName]: newState });
   },
 }));

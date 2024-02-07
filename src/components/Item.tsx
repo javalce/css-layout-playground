@@ -7,7 +7,7 @@ export function Item({ index, label }: { index: number; label: string }) {
   const selectItem = useContainerStore((state) => state.selectItem);
   const { getFlexboxItem } = useItem();
 
-  const style = getFlexboxItem(index);
+  const style = getFlexboxItem({ index });
 
   const handleClick = () => {
     const newIndex = selectedItemIndex === index ? -1 : index;

@@ -1,58 +1,48 @@
 'use client';
 
+import { useContainer } from '@/hooks/container.hook';
+import { useItem } from '@/hooks/item.hook';
 import { FLEXBOX_DEFAULTS } from '@/models/defaults';
-import { FLEXBOX_ALIGN_SELF } from '@/models/layout';
-import { useContainerStore } from '@/store/container.store';
-import { useFlexboxStore } from '@/store/flexbox.store';
+import { FLEXBOX_ALIGN_SELF, FLEXBOX_ITEM_PROPERTIES } from '@/models/layout';
 import { OptionsContainer } from './OptionsContainer';
+import { OptionsInput } from './OptionsInput';
 import { OptionsSelector } from './OptionsSelector';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
 
 export function FlexboxItemOptions() {
-  const order = useFlexboxStore((state) => state.order);
-  const flexGrow = useFlexboxStore((state) => state.flexGrow);
-  const flexShrink = useFlexboxStore((state) => state.flexShrink);
-  const alignSelf = useFlexboxStore((state) => state.alignSelf);
-  const selectedItemIndex = useContainerStore((state) => state.selectedItemIndex);
+  const { selectedItemIndex } = useContainer();
+  const { getFlexboxItem } = useItem();
+
+  if (selectedItemIndex === -1) return null;
+
+  const { order, flexGrow, flexShrink, alignSelf } = getFlexboxItem({ index: selectedItemIndex });
 
   return (
     <OptionsContainer>
-      {selectedItemIndex !== -1 && (
-        <>
-          <article>
-            <Label>Order</Label>
-            <Input
-              defaultValue={order[selectedItemIndex]}
-              min={FLEXBOX_DEFAULTS.order}
-              type='number'
-            />
-          </article>
-          <article>
-            <Label>Flex Grow</Label>
-            <Input
-              defaultValue={flexGrow[selectedItemIndex]}
-              min={FLEXBOX_DEFAULTS.flexGrow}
-              type='number'
-            />
-          </article>
-          <article>
-            <Label>Flex Shrink</Label>
-            <Input
-              defaultValue={flexShrink[selectedItemIndex]}
-              min={FLEXBOX_DEFAULTS.flexShrink}
-              type='number'
-            />
-          </article>
-          <OptionsSelector
-            data={FLEXBOX_ALIGN_SELF}
-            defaultValue={alignSelf[selectedItemIndex]}
-            placeholder='Align Self'
-            property='alignSelf'
-            title='Align Self'
-          />
-        </>
-      )}
+      <OptionsInput
+        defaultValue={order}
+        min={FLEXBOX_DEFAULTS.order}
+        property={FLEXBOX_ITEM_PROPERTIES.order}
+        title='Order'
+      />
+      <OptionsInput
+        defaultValue={flexGrow}
+        min={FLEXBOX_DEFAULTS.flexGrow}
+        property={FLEXBOX_ITEM_PROPERTIES.flexGrow}
+        title='Flex Grow'
+      />
+      <OptionsInput
+        defaultValue={flexShrink}
+        min={FLEXBOX_DEFAULTS.flexShrink}
+        property={FLEXBOX_ITEM_PROPERTIES.flexShrink}
+        title='Flex Shrink'
+      />
+      <OptionsSelector
+        data={FLEXBOX_ALIGN_SELF}
+        defaultValue={alignSelf}
+        placeholder='Align Self'
+        property={FLEXBOX_ITEM_PROPERTIES.alignSelf}
+        title='Align Self'
+      />
     </OptionsContainer>
   );
 }

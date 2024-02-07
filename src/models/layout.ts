@@ -58,3 +58,13 @@ export const FLEXBOX_ALIGN_SELF = {
 } as const;
 
 export type FlexboxAlignSelf = (typeof FLEXBOX_ALIGN_SELF)[keyof typeof FLEXBOX_ALIGN_SELF];
+
+export const FLEXBOX_ITEM_PROPERTIES = {
+  order: 'order',
+  flexGrow: 'flexGrow',
+  flexShrink: 'flexShrink',
+  alignSelf: 'alignSelf',
+} as const;
+
+export type FlexboxItemProperty =
+  (typeof FLEXBOX_ITEM_PROPERTIES)[keyof typeof FLEXBOX_ITEM_PROPERTIES];
