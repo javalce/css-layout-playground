@@ -1,5 +1,6 @@
 import { Header } from '@/components/Header';
 import { cn } from '@/lib/utils';
+import { LayoutStoreProvider } from '@/providers/layout';
 import { ThemeProvider } from '@/providers/theme';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
@@ -25,8 +26,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           attribute='class'
           defaultTheme='system'
         >
-          <Header />
-          {children}
+          <LayoutStoreProvider>
+            <Header />
+            {children}
+          </LayoutStoreProvider>
         </ThemeProvider>
       </body>
     </html>
