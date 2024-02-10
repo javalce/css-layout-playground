@@ -68,3 +68,10 @@ export const FLEXBOX_ITEM_PROPERTIES = {
 
 export type FlexboxItemProperty =
   (typeof FLEXBOX_ITEM_PROPERTIES)[keyof typeof FLEXBOX_ITEM_PROPERTIES];
+
+export interface FlexboxItem {
+  order: number;
+  flexGrow: number;
+  flexShrink: number;
+  alignSelf: FlexboxAlignSelf;
+}
