@@ -1,4 +1,3 @@
-import { useFlexbox } from '@/hooks/flexbox.hook';
 import { Label } from './ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 
@@ -8,19 +7,17 @@ export function OptionsSelector({
   data,
   property,
   placeholder,
+  onChange,
 }: {
   title: string;
   defaultValue: string;
   data: Record<string, string>;
   property: string;
   placeholder: string;
+  onChange: (property: string, value: string) => void;
 }) {
-  const { update } = useFlexbox();
-
   const handleUpdateValue = (value: string) => {
-    update({
-      [property]: value,
-    });
+    onChange(property, value);
   };
 
   return (

@@ -17,8 +17,12 @@ export function FlexboxItemOptions() {
 
   const { order, flexGrow, flexShrink, alignSelf } = getFlexboxItem({ index: selectedItemIndex });
 
-  const handleUpdate = (property: FlexboxItemProperty, value: Partial<FlexboxItem>) => {
-    updateFlexboxItem(selectedItemIndex, property, value);
+  const handleUpdate = (property: string, value: unknown) => {
+    updateFlexboxItem(
+      selectedItemIndex,
+      property as FlexboxItemProperty,
+      value as Partial<FlexboxItem>,
+    );
   };
 
   return (
@@ -50,6 +54,7 @@ export function FlexboxItemOptions() {
         placeholder='Align Self'
         property={FLEXBOX_ITEM_PROPERTIES.alignSelf}
         title='Align Self'
+        onChange={handleUpdate}
       />
     </OptionsContainer>
   );

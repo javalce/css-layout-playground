@@ -12,7 +12,12 @@ import { OptionsContainer } from './OptionsContainer';
 import { OptionsSelector } from './OptionsSelector';
 
 export function FlexboxOptions() {
-  const { flexboxDirection, flexboxWrap, flexboxJustifyContent, flexboxAlignItems } = useFlexbox();
+  const { flexboxDirection, flexboxWrap, flexboxJustifyContent, flexboxAlignItems, update } =
+    useFlexbox();
+
+  const handleUpdate = (property: string, value: string) => {
+    update({ [property]: value });
+  };
 
   return (
     <OptionsContainer>
@@ -22,6 +27,7 @@ export function FlexboxOptions() {
         placeholder='Select flexbox direction'
         property={FLEXBOX_LAYOUT_PROPERTIES.flexDirection}
         title='Flex Direction'
+        onChange={handleUpdate}
       />
       <OptionsSelector
         data={FLEXBOX_WRAP}
@@ -29,6 +35,7 @@ export function FlexboxOptions() {
         placeholder='Select flexbox wrap'
         property={FLEXBOX_LAYOUT_PROPERTIES.flexWrap}
         title='Flex Wrap'
+        onChange={handleUpdate}
       />
       <OptionsSelector
         data={FLEXBOX_JUSTIFY}
@@ -36,6 +43,7 @@ export function FlexboxOptions() {
         placeholder='Select justify content'
         property={FLEXBOX_LAYOUT_PROPERTIES.justifyContent}
         title='Justify Content'
+        onChange={handleUpdate}
       />
       <OptionsSelector
         data={FLEXBOX_ALIGN}
@@ -43,6 +51,7 @@ export function FlexboxOptions() {
         placeholder='Select align items'
         property={FLEXBOX_LAYOUT_PROPERTIES.alignItems}
         title='Align Items'
+        onChange={handleUpdate}
       />
     </OptionsContainer>
   );
