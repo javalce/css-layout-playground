@@ -18,7 +18,7 @@ export function LayoutStoreProvider({ children }: { children: React.ReactNode })
   );
 }
 
-export function useStore<T>(selector: (store: LayoutStore) => T) {
+export function useLayoutStore<T>(selector: (store: LayoutStore) => T) {
   const store = useContext(LayoutStoreContext);
 
   if (!store) {

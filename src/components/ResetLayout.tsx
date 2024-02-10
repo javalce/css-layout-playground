@@ -1,11 +1,13 @@
-import { useResetLayout } from '@/hooks/reset.hook';
+'use client';
+
+import { useLayoutStore } from '@/providers/layout';
 import { Button } from './ui/button';
 
 export function ResetLayout() {
-  const { resetLayout } = useResetLayout();
+  const reset = useLayoutStore((state) => state.reset);
 
   return (
-    <Button variant='outline' onClick={resetLayout}>
+    <Button variant='outline' onClick={reset}>
       Reset to defaults
     </Button>
   );
