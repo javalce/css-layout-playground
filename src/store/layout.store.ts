@@ -12,35 +12,31 @@ import type {
   FlexboxJustify,
   FlexboxWrap,
 } from '@/models/layout';
-import { LayoutStoreContext } from '@/providers/layout';
-import { useContext } from 'react';
-import { createStore, useStore as useZustandStore } from 'zustand';
+import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
-export interface LayoutContainerState {
+interface LayoutContainerState {
   numItems: number;
   selectedItemIndex: number;
 }
 
-export interface FlexboxLayoutContainerState {
+interface FlexboxLayoutContainerState {
   flexDirection: FlexboxDirection;
   flexWrap: FlexboxWrap;
   justifyContent: FlexboxJustify;
   alignItems: FlexboxAlign;
 }
 
-export interface FlexboxItemLayoutState {
+interface FlexboxItemLayoutState {
   order: number[];
   flexGrow: number[];
   flexShrink: number[];
   alignSelf: FlexboxAlignSelf[];
 }
 
-export type LayoutState = LayoutContainerState &
-  FlexboxLayoutContainerState &
-  FlexboxItemLayoutState;
+type LayoutState = LayoutContainerState & FlexboxLayoutContainerState & FlexboxItemLayoutState;
 
-export interface LayoutActions {
+interface LayoutActions {
   selectItem: (index: number) => void;
   addItem: () => void;
   removeItem: () => void;
@@ -53,7 +49,7 @@ export interface LayoutActions {
   ) => void;
 }
 
-export type LayoutStore = LayoutState & LayoutActions;
+type LayoutStore = LayoutState & LayoutActions;
 
 function getDefaultInitialState(): LayoutState {
   return {
@@ -70,84 +66,70 @@ function getDefaultInitialState(): LayoutState {
   } as const;
 }
 
-export type LayoutStoreApi = ReturnType<typeof createLayoutStore>;
+export const useLayoutStore = create<LayoutStore>()(
+  devtools(
+    (set, get) => ({
+      ...getDefaultInitialState(),
+      selectItem: (index) => set({ selectedItemIndex: index }),
+      addItem: () => {
+        const { numItems, order, flexGrow, flexShrink, alignSelf } = get();
 
-export function useLayoutStore<T>(selector: (store: LayoutStore) => T) {
-  const store = useContext(LayoutStoreContext);
+        const newNumItems = numItems + 1;
+        const newOrder = [...order, FLEXBOX_DEFAULTS.order];
+        const newFlexGrow = [...flexGrow, FLEXBOX_DEFAULTS.flexGrow];
+        const newFlexShrink = [...flexShrink, FLEXBOX_DEFAULTS.flexShrink];
+        const newAlignSelf = [...alignSelf, FLEXBOX_DEFAULTS.alignSelf];
 
-  if (!store) {
-    throw new Error('useStore must be used within a LayoutStoreProvider');
-  }
+        set({
+          numItems: newNumItems,
+          order: newOrder,
+          flexGrow: newFlexGrow,
+          flexShrink: newFlexShrink,
+          alignSelf: newAlignSelf,
+        });
+      },
+      removeItem: () => {
+        const { numItems, selectedItemIndex, order, flexGrow, flexShrink, alignSelf } = get();
 
-  return useZustandStore(store, selector);
-}
+        if (selectedItemIndex === -1) {
+          return;
+        }
 
-export function createLayoutStore() {
-  return createStore<LayoutStore>()(
-    devtools(
-      (set, get) => ({
-        ...getDefaultInitialState(),
-        selectItem: (index) => set({ selectedItemIndex: index }),
-        addItem: () => {
-          const { numItems, order, flexGrow, flexShrink, alignSelf } = get();
+        const newNumItems = numItems - 1;
+        const newOrder = [...order];
+        const newFlexGrow = [...flexGrow];
+        const newFlexShrink = [...flexShrink];
+        const newAlignSelf = [...alignSelf];
 
-          const newNumItems = numItems + 1;
-          const newOrder = [...order, FLEXBOX_DEFAULTS.order];
-          const newFlexGrow = [...flexGrow, FLEXBOX_DEFAULTS.flexGrow];
-          const newFlexShrink = [...flexShrink, FLEXBOX_DEFAULTS.flexShrink];
-          const newAlignSelf = [...alignSelf, FLEXBOX_DEFAULTS.alignSelf];
+        newOrder.splice(selectedItemIndex, 1);
+        newFlexGrow.splice(selectedItemIndex, 1);
+        newFlexShrink.splice(selectedItemIndex, 1);
+        newAlignSelf.splice(selectedItemIndex, 1);
 
-          set({
-            numItems: newNumItems,
-            order: newOrder,
-            flexGrow: newFlexGrow,
-            flexShrink: newFlexShrink,
-            alignSelf: newAlignSelf,
-          });
-        },
-        removeItem: () => {
-          const { numItems, selectedItemIndex, order, flexGrow, flexShrink, alignSelf } = get();
+        set({
+          numItems: newNumItems,
+          selectedItemIndex: DEFAULT_SELECTED_ITEM_INDEX,
+          order: newOrder,
+          flexGrow: newFlexGrow,
+          flexShrink: newFlexShrink,
+          alignSelf: newAlignSelf,
+        });
+      },
+      reset: () => set(getDefaultInitialState()),
+      updateFlexboxContainer: (state) => set({ ...get(), ...state }),
+      updateFlexboxItem: (index, propertyName, state) => {
+        const oldState = get();
 
-          if (selectedItemIndex === -1) {
-            return;
-          }
+        const newState: (number | FlexboxAlignSelf)[] = [...oldState[propertyName]];
+        const value = state[propertyName];
 
-          const newNumItems = numItems - 1;
-          const newOrder = [...order];
-          const newFlexGrow = [...flexGrow];
-          const newFlexShrink = [...flexShrink];
-          const newAlignSelf = [...alignSelf];
+        if (value === undefined) return;
 
-          newOrder.splice(selectedItemIndex, 1);
-          newFlexGrow.splice(selectedItemIndex, 1);
-          newFlexShrink.splice(selectedItemIndex, 1);
-          newAlignSelf.splice(selectedItemIndex, 1);
+        newState.splice(index, 1, value);
 
-          set({
-            numItems: newNumItems,
-            selectedItemIndex: DEFAULT_SELECTED_ITEM_INDEX,
-            order: newOrder,
-            flexGrow: newFlexGrow,
-            flexShrink: newFlexShrink,
-            alignSelf: newAlignSelf,
-          });
-        },
-        reset: () => set(getDefaultInitialState()),
-        updateFlexboxContainer: (state) => set({ ...get(), ...state }),
-        updateFlexboxItem: (index, propertyName, state) => {
-          const oldState = get();
-
-          const newState: (number | FlexboxAlignSelf)[] = [...oldState[propertyName]];
-          const value = state[propertyName];
-
-          if (value === undefined) return;
-
-          newState.splice(index, 1, value);
-
-          set({ [propertyName]: newState });
-        },
-      }),
-      { name: 'layout-store' },
-    ),
-  );
-}
+        set({ [propertyName]: newState });
+      },
+    }),
+    { name: 'layout-store' },
+  ),
+);
