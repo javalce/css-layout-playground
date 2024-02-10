@@ -1,11 +1,17 @@
-import { useFlexboxStore } from '@/store/flexbox.store';
+import { useLayoutStore } from '@/providers/layout';
+import { useShallow } from 'zustand/react/shallow';
 
 export const useFlexbox = () => {
-  const flexboxDirection = useFlexboxStore((state) => state.flexDirection);
-  const flexboxWrap = useFlexboxStore((state) => state.flexWrap);
-  const flexboxJustifyContent = useFlexboxStore((state) => state.justifyContent);
-  const flexboxAlignItems = useFlexboxStore((state) => state.alignItems);
-  const update = useFlexboxStore((state) => state.update);
+  const { flexboxDirection, flexboxWrap, flexboxJustifyContent, flexboxAlignItems, update } =
+    useLayoutStore(
+      useShallow((state) => ({
+        flexboxDirection: state.flexDirection,
+        flexboxWrap: state.flexWrap,
+        flexboxJustifyContent: state.justifyContent,
+        flexboxAlignItems: state.alignItems,
+        update: state.updateFlexboxContainer,
+      })),
+    );
 
   return {
     flexboxDirection,

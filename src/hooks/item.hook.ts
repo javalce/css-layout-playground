@@ -1,22 +1,18 @@
-import type { FlexboxItemProperty } from '@/models/layout';
-import { useContainerStore } from '@/store/container.store';
-import type { FlexboxItem } from '@/store/flexbox.store';
-import { useFlexboxStore } from '@/store/flexbox.store';
+import { useLayoutStore } from '@/providers/layout';
+import { useShallow } from 'zustand/react/shallow';
 
 export const useItem = () => {
-  const addItemToConatiner = useContainerStore((state) => state.addItem);
-  const addItemToFlexbox = useFlexboxStore((state) => state.addItem);
-
-  const orderArray = useFlexboxStore((state) => state.order);
-  const flexGrowArray = useFlexboxStore((state) => state.flexGrow);
-  const flexShrinkArray = useFlexboxStore((state) => state.flexShrink);
-  const alignSelfArray = useFlexboxStore((state) => state.alignSelf);
-  const updateItemProperty = useFlexboxStore((state) => state.updateItemProperty);
-
-  const addItem = () => {
-    addItemToConatiner();
-    addItemToFlexbox();
-  };
+  const { addItem, orderArray, flexGrowArray, flexShrinkArray, alignSelfArray, updateFlexboxItem } =
+    useLayoutStore(
+      useShallow((state) => ({
+        addItem: state.addItem,
+        orderArray: state.order,
+        flexGrowArray: state.flexGrow,
+        flexShrinkArray: state.flexShrink,
+        alignSelfArray: state.alignSelf,
+        updateFlexboxItem: state.updateFlexboxItem,
+      })),
+    );
 
   const getFlexboxItemProperties = ({ index }: { index: number }) => {
     return {
@@ -27,21 +23,9 @@ export const useItem = () => {
     };
   };
 
-  const updateFlexboxItemProperties = ({
-    index,
-    propertyName,
-    property,
-  }: {
-    index: number;
-    propertyName: FlexboxItemProperty;
-    property: Partial<FlexboxItem>;
-  }) => {
-    updateItemProperty(index, propertyName, property);
-  };
-
   return {
     addItem,
     getFlexboxItem: getFlexboxItemProperties,
-    updateFlexboxItem: updateFlexboxItemProperties,
+    updateFlexboxItem,
   };
 };

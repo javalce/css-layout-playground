@@ -3,9 +3,8 @@
 import { useContainer } from '@/hooks/container.hook';
 import { useItem } from '@/hooks/item.hook';
 import { FLEXBOX_DEFAULTS } from '@/models/defaults';
-import type { FlexboxItemProperty } from '@/models/layout';
+import type { FlexboxItem, FlexboxItemProperty } from '@/models/layout';
 import { FLEXBOX_ALIGN_SELF, FLEXBOX_ITEM_PROPERTIES } from '@/models/layout';
-import type { FlexboxItem } from '@/store/flexbox.store';
 import { OptionsContainer } from './OptionsContainer';
 import { OptionsInput } from './OptionsInput';
 import { OptionsSelector } from './OptionsSelector';
@@ -19,11 +18,7 @@ export function FlexboxItemOptions() {
   const { order, flexGrow, flexShrink, alignSelf } = getFlexboxItem({ index: selectedItemIndex });
 
   const handleUpdate = (property: FlexboxItemProperty, value: Partial<FlexboxItem>) => {
-    updateFlexboxItem({
-      index: selectedItemIndex,
-      propertyName: property,
-      property: value,
-    });
+    updateFlexboxItem(selectedItemIndex, property, value);
   };
 
   return (

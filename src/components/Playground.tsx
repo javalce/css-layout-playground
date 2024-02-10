@@ -1,12 +1,12 @@
 'use client';
 
+import { useContainer } from '@/hooks/container.hook';
 import { useFlexbox } from '@/hooks/flexbox.hook';
-import { useContainerStore } from '@/store/container.store';
 import { Item } from './Item';
 
 export function Playground() {
   const { flexboxDirection, flexboxWrap, flexboxJustifyContent, flexboxAlignItems } = useFlexbox();
-  const numItems = useContainerStore((state) => state.numItems);
+  const { numItems } = useContainer();
 
   return (
     <main

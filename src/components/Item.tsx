@@ -1,10 +1,9 @@
+import { useContainer } from '@/hooks/container.hook';
 import { useItem } from '@/hooks/item.hook';
 import { cn } from '@/lib/utils';
-import { useContainerStore } from '@/store/container.store';
 
 export function Item({ index, label }: { index: number; label: string }) {
-  const selectedItemIndex = useContainerStore((state) => state.selectedItemIndex);
-  const selectItem = useContainerStore((state) => state.selectItem);
+  const { selectedItemIndex, selectItem } = useContainer();
   const { getFlexboxItem } = useItem();
 
   const style = getFlexboxItem({ index });
