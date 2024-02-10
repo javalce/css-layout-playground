@@ -1,7 +1,6 @@
 'use client';
 
-import type { FlexboxItemProperty } from '@/models/layout';
-import type { FlexboxItem } from '@/store/flexbox.store';
+import type { FlexboxItem, FlexboxItemProperty } from '@/models/layout';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 
