@@ -21,7 +21,7 @@ export function FlexboxItemOptions() {
     updateFlexboxItem(
       selectedItemIndex,
       property as FlexboxItemProperty,
-      value as Partial<FlexboxItem>,
+      { [property]: value } as Partial<FlexboxItem>,
     );
   };
 
