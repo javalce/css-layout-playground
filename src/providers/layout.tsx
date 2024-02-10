@@ -1,10 +1,9 @@
 'use client';
 
-import { createLayoutStore, type LayoutStore, type LayoutStoreApi } from '@/store/layout.store';
-import { createContext, useContext, useRef } from 'react';
-import { useStore as useZustandStore } from 'zustand';
+import { createLayoutStore, type LayoutStoreApi } from '@/store/layout.store';
+import { createContext, useRef } from 'react';
 
-const LayoutStoreContext = createContext<LayoutStoreApi | null>(null);
+export const LayoutStoreContext = createContext<LayoutStoreApi | null>(null);
 
 export function LayoutStoreProvider({ children }: { children: React.ReactNode }) {
   const storeRef = useRef<LayoutStoreApi>();
@@ -16,14 +15,4 @@ export function LayoutStoreProvider({ children }: { children: React.ReactNode })
   return (
     <LayoutStoreContext.Provider value={storeRef.current}>{children}</LayoutStoreContext.Provider>
   );
-}
-
-export function useLayoutStore<T>(selector: (store: LayoutStore) => T) {
-  const store = useContext(LayoutStoreContext);
-
-  if (!store) {
-    throw new Error('useStore must be used within a LayoutStoreProvider');
-  }
-
-  return useZustandStore(store, selector);
 }

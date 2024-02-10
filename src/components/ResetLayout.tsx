@@ -1,6 +1,6 @@
 'use client';
 
-import { useLayoutStore } from '@/providers/layout';
+import { useLayoutStore } from '@/store/layout.store';
 import { Button } from './ui/button';
 
 export function ResetLayout() {

@@ -1,4 +1,4 @@
-import { useLayoutStore } from '@/providers/layout';
+import { useLayoutStore } from '@/store/layout.store';
 import { useShallow } from 'zustand/react/shallow';
 
 export const useContainer = () => {

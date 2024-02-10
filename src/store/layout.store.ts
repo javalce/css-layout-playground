@@ -12,7 +12,9 @@ import type {
   FlexboxJustify,
   FlexboxWrap,
 } from '@/models/layout';
-import { createStore } from 'zustand';
+import { LayoutStoreContext } from '@/providers/layout';
+import { useContext } from 'react';
+import { createStore, useStore as useZustandStore } from 'zustand';
 
 export interface LayoutContainerState {
   numItems: number;
@@ -65,6 +67,18 @@ function getDefaultInitialState(): LayoutState {
     flexShrink: Array.from({ length: DEFAULT_NUM_ITEMS }, () => FLEXBOX_DEFAULTS.flexShrink),
     alignSelf: Array.from({ length: DEFAULT_NUM_ITEMS }, () => FLEXBOX_DEFAULTS.alignSelf),
   } as const;
+}
+
+export type LayoutStoreApi = ReturnType<typeof createLayoutStore>;
+
+export function useLayoutStore<T>(selector: (store: LayoutStore) => T) {
+  const store = useContext(LayoutStoreContext);
+
+  if (!store) {
+    throw new Error('useStore must be used within a LayoutStoreProvider');
+  }
+
+  return useZustandStore(store, selector);
 }
 
 export function createLayoutStore() {
@@ -131,5 +145,3 @@ export function createLayoutStore() {
     },
   }));
 }
-
-export type LayoutStoreApi = ReturnType<typeof createLayoutStore>;
