@@ -15,19 +15,19 @@ import type {
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
-interface LayoutContainerState {
+export interface LayoutContainerState {
   numItems: number;
   selectedItemIndex: number;
 }
 
-interface FlexboxLayoutContainerState {
+export interface FlexboxLayoutContainerState {
   flexDirection: FlexboxDirection;
   flexWrap: FlexboxWrap;
   justifyContent: FlexboxJustify;
   alignItems: FlexboxAlign;
 }
 
-interface FlexboxItemLayoutState {
+export interface FlexboxItemLayoutState {
   order: number[];
   flexGrow: number[];
   flexShrink: number[];
