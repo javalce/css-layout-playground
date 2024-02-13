@@ -13,7 +13,7 @@ import {
 import { capitalizeFirstLetter } from '@/lib/utils';
 import { THEMES } from '@/models/theme';
 
-export function ThemeToggle() {
+export function ThemeToggleButton() {
   const { setTheme } = useTheme();
 
   return (

@@ -1,8 +1,8 @@
 'use client';
 
 import type { FlexboxItemProperty } from '@/models/layout';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
+import { Input } from '../ui/input';
+import { Label } from '../ui/label';
 
 export function OptionsInput({
   value,

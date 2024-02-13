@@ -1,9 +1,9 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
 import { useLayoutStore } from '@/store/layout.store';
-import { Button } from './ui/button';
 
-export function ResetLayout() {
+export function ResetLayoutButton() {
   const reset = useLayoutStore((state) => state.reset);
 
   return (

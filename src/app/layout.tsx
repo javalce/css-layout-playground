@@ -1,4 +1,4 @@
-import { Header } from '@/components/Header';
+import { Header } from '@/components/header/Header';
 import { cn } from '@/lib/utils';
 import { ThemeProvider } from '@/providers/theme';
 import type { Metadata } from 'next';

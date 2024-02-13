@@ -1,5 +1,5 @@
-import { Playground } from '@/components/Playground';
-import { Sidebar } from '@/components/Sidebar';
+import { Playground } from '@/components/playground/Playground';
+import { Sidebar } from '@/components/sidebar/Sidebar';
 
 export default function Home() {
   return (

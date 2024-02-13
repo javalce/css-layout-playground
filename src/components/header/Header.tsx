@@ -1,9 +1,13 @@
 'use client';
 
-import { ResetLayout } from './ResetLayout';
-import { ThemeToggle } from './ThemeToggle';
-import { GithubIcon } from './icons/Github';
-import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from './ui/navigation-menu';
+import { GithubIcon } from '@/components/icons/Github';
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuList,
+} from '@/components/ui/navigation-menu';
+import { ResetLayoutButton } from './ResetLayoutButton';
+import { ThemeToggleButton } from './ThemeToggleButton';
 
 export function Header() {
   return (
@@ -18,7 +22,7 @@ export function Header() {
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <ResetLayout />
+                <ResetLayoutButton />
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
@@ -33,7 +37,7 @@ export function Header() {
                 <span className='sr-only'>GitHub</span>
               </div>
             </a>
-            <ThemeToggle />
+            <ThemeToggleButton />
           </nav>
         </div>
       </div>

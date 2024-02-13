@@ -1,11 +1,17 @@
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { capitalizeFirstLetter } from '@/lib/utils';
 import { LAYOUT_TYPES } from '@/models/layout';
 import { AddItem } from './AddItem';
 import { FlexboxItemOptions } from './FlexboxItemOptions';
 import { FlexboxOptions } from './FlexboxOptions';
 import { RemoveItem } from './RemoveItem';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 
 export function Sidebar() {
   return (
