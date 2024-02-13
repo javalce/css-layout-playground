@@ -1,10 +1,10 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { useItem } from '@/hooks/item.hook';
+import { useContainer } from '@/hooks/container.hook';
 
 export function AddItem() {
-  const { addItem } = useItem();
+  const { addItem } = useContainer();
 
   return <Button onClick={addItem}>Add Item</Button>;
 }

@@ -2,10 +2,9 @@ import { useLayoutStore } from '@/store/layout.store';
 import { useShallow } from 'zustand/react/shallow';
 
 export const useItem = () => {
-  const { addItem, orderArray, flexGrowArray, flexShrinkArray, alignSelfArray, updateFlexboxItem } =
+  const { orderArray, flexGrowArray, flexShrinkArray, alignSelfArray, updateFlexboxItem } =
     useLayoutStore(
       useShallow((state) => ({
-        addItem: state.addItem,
         orderArray: state.order,
         flexGrowArray: state.flexGrow,
         flexShrinkArray: state.flexShrink,
@@ -24,7 +23,6 @@ export const useItem = () => {
   };
 
   return {
-    addItem,
     getFlexboxItem: getFlexboxItemProperties,
     updateFlexboxItem,
   };
