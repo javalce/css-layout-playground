@@ -6,6 +6,10 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function capitalizeFirstLetter(str: string) {
+  if (str === '') return str;
+
+  if (/[A-Z]/.exec(str[0])) return str;
+
   const capitalized = str.replace(/^./, str[0].toUpperCase());
 
   return capitalized;
