@@ -35,6 +35,11 @@ module.exports = {
         '@typescript-eslint/triple-slash-reference': 'off',
       },
     },
+    {
+      files: ['*.(spec|test).{ts,tsx}'],
+      extends: ['plugin:testing-library/react'],
+      // plugins: ['testing-library'],
+    },
   ],
   rules: {
     'react/jsx-sort-props': [
