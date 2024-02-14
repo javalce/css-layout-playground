@@ -12,8 +12,8 @@ import type {
   FlexboxJustify,
   FlexboxWrap,
 } from '@/models/layout';
-import { create } from 'zustand';
-import { devtools } from 'zustand/middleware';
+import { createContext, useContext } from 'react';
+import { createStore, useStore as useZustandStore } from 'zustand';
 
 export interface LayoutContainerState {
   numItems: number;
@@ -49,7 +49,7 @@ interface LayoutActions {
   ) => void;
 }
 
-type LayoutStore = LayoutState & LayoutActions;
+export type LayoutStore = LayoutState & LayoutActions;
 
 function getDefaultInitialState(): LayoutState {
   return {
@@ -66,70 +66,79 @@ function getDefaultInitialState(): LayoutState {
   } as const;
 }
 
-export const useLayoutStore = create<LayoutStore>()(
-  devtools(
-    (set, get) => ({
-      ...getDefaultInitialState(),
-      selectItem: (index) => set({ selectedItemIndex: index }),
-      addItem: () => {
-        const { numItems, order, flexGrow, flexShrink, alignSelf } = get();
+export type LayoutStoreApi = ReturnType<typeof initializeStore>;
 
-        const newNumItems = numItems + 1;
-        const newOrder = [...order, FLEXBOX_DEFAULTS.order];
-        const newFlexGrow = [...flexGrow, FLEXBOX_DEFAULTS.flexGrow];
-        const newFlexShrink = [...flexShrink, FLEXBOX_DEFAULTS.flexShrink];
-        const newAlignSelf = [...alignSelf, FLEXBOX_DEFAULTS.alignSelf];
+export const LayoutStoreContext = createContext<LayoutStoreApi | null>(null);
 
-        set({
-          numItems: newNumItems,
-          order: newOrder,
-          flexGrow: newFlexGrow,
-          flexShrink: newFlexShrink,
-          alignSelf: newAlignSelf,
-        });
-      },
-      removeItem: () => {
-        const { numItems, selectedItemIndex, order, flexGrow, flexShrink, alignSelf } = get();
+export function useLayoutStore<T>(selector: (state: LayoutStore) => T) {
+  const store = useContext(LayoutStoreContext);
 
-        if (selectedItemIndex === -1) {
-          return;
-        }
+  if (!store) throw new Error('LayoutStoreContext is missing the provider');
 
-        const newNumItems = numItems - 1;
-        const newOrder = [...order];
-        const newFlexGrow = [...flexGrow];
-        const newFlexShrink = [...flexShrink];
-        const newAlignSelf = [...alignSelf];
+  return useZustandStore(store, selector);
+}
 
-        newOrder.splice(selectedItemIndex, 1);
-        newFlexGrow.splice(selectedItemIndex, 1);
-        newFlexShrink.splice(selectedItemIndex, 1);
-        newAlignSelf.splice(selectedItemIndex, 1);
+export function initializeStore() {
+  return createStore<LayoutStore>((set, get) => ({
+    ...getDefaultInitialState(),
+    selectItem: (index) => set({ selectedItemIndex: index }),
+    addItem: () => {
+      const { numItems, order, flexGrow, flexShrink, alignSelf } = get();
 
-        set({
-          numItems: newNumItems,
-          selectedItemIndex: DEFAULT_SELECTED_ITEM_INDEX,
-          order: newOrder,
-          flexGrow: newFlexGrow,
-          flexShrink: newFlexShrink,
-          alignSelf: newAlignSelf,
-        });
-      },
-      reset: () => set(getDefaultInitialState()),
-      updateFlexboxContainer: (state) => set({ ...get(), ...state }),
-      updateFlexboxItem: (index, propertyName, state) => {
-        const oldState = get();
+      const newNumItems = numItems + 1;
+      const newOrder = [...order, FLEXBOX_DEFAULTS.order];
+      const newFlexGrow = [...flexGrow, FLEXBOX_DEFAULTS.flexGrow];
+      const newFlexShrink = [...flexShrink, FLEXBOX_DEFAULTS.flexShrink];
+      const newAlignSelf = [...alignSelf, FLEXBOX_DEFAULTS.alignSelf];
 
-        const newState: (number | FlexboxAlignSelf)[] = [...oldState[propertyName]];
-        const value = state[propertyName];
+      set({
+        numItems: newNumItems,
+        order: newOrder,
+        flexGrow: newFlexGrow,
+        flexShrink: newFlexShrink,
+        alignSelf: newAlignSelf,
+      });
+    },
+    removeItem: () => {
+      const { numItems, selectedItemIndex, order, flexGrow, flexShrink, alignSelf } = get();
 
-        if (value === undefined) return;
+      if (selectedItemIndex === -1) {
+        return;
+      }
 
-        newState.splice(index, 1, value);
+      const newNumItems = numItems - 1;
+      const newOrder = [...order];
+      const newFlexGrow = [...flexGrow];
+      const newFlexShrink = [...flexShrink];
+      const newAlignSelf = [...alignSelf];
 
-        set({ [propertyName]: newState });
-      },
-    }),
-    { name: 'layout-store' },
-  ),
-);
+      newOrder.splice(selectedItemIndex, 1);
+      newFlexGrow.splice(selectedItemIndex, 1);
+      newFlexShrink.splice(selectedItemIndex, 1);
+      newAlignSelf.splice(selectedItemIndex, 1);
+
+      set({
+        numItems: newNumItems,
+        selectedItemIndex: DEFAULT_SELECTED_ITEM_INDEX,
+        order: newOrder,
+        flexGrow: newFlexGrow,
+        flexShrink: newFlexShrink,
+        alignSelf: newAlignSelf,
+      });
+    },
+    reset: () => set(getDefaultInitialState()),
+    updateFlexboxContainer: (state) => set({ ...get(), ...state }),
+    updateFlexboxItem: (index, propertyName, state) => {
+      const oldState = get();
+
+      const newState: (number | FlexboxAlignSelf)[] = [...oldState[propertyName]];
+      const value = state[propertyName];
+
+      if (value === undefined) return;
+
+      newState.splice(index, 1, value);
+
+      set({ [propertyName]: newState });
+    },
+  }));
+}
