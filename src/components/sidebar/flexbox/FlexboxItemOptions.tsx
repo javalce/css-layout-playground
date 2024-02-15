@@ -1,13 +1,13 @@
 'use client';
 
+import { OptionsContainer } from '@/components/options/OptionsContainer';
+import { OptionsInput } from '@/components/options/OptionsInput';
+import { OptionsSelector } from '@/components/options/OptionsSelector';
 import { useContainer } from '@/hooks/container.hook';
 import { useItem } from '@/hooks/item.hook';
 import { FLEXBOX_DEFAULTS } from '@/models/defaults';
 import type { FlexboxItem, FlexboxItemProperty } from '@/models/layout';
 import { FLEXBOX_ALIGN_SELF, FLEXBOX_ITEM_PROPERTIES } from '@/models/layout';
-import { OptionsContainer } from '../options/OptionsContainer';
-import { OptionsInput } from '../options/OptionsInput';
-import { OptionsSelector } from '../options/OptionsSelector';
 
 export function FlexboxItemOptions() {
   const { selectedItemIndex } = useContainer();
