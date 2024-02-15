@@ -13,7 +13,9 @@ import type {
   FlexboxWrap,
 } from '@/models/layout';
 import { createContext, useContext } from 'react';
-import { createStore, useStore as useZustandStore } from 'zustand';
+import { createStore } from 'zustand';
+import { shallow } from 'zustand/shallow';
+import { useStoreWithEqualityFn } from 'zustand/traditional';
 
 export interface LayoutContainerState {
   numItems: number;
@@ -70,12 +72,14 @@ export type LayoutStoreApi = ReturnType<typeof initializeStore>;
 
 export const LayoutStoreContext = createContext<LayoutStoreApi | null>(null);
 
-export function useLayoutStore<T>(selector: (state: LayoutStore) => T) {
+export function useLayoutStore<T = unknown>(selector: (state: LayoutStore) => T) {
   const store = useContext(LayoutStoreContext);
 
-  if (!store) throw new Error('LayoutStoreContext is missing the provider');
+  if (!store) {
+    throw new Error('LayoutStoreContext is missing the provider');
+  }
 
-  return useZustandStore(store, selector);
+  return useStoreWithEqualityFn(store, selector, shallow);
 }
 
 export function initializeStore() {
