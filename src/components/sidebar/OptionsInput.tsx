@@ -1,7 +1,7 @@
 'use client';
 
-import { Input } from '../ui/input';
-import { Label } from '../ui/label';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 export function OptionsInput({
   value,
@@ -21,8 +21,8 @@ export function OptionsInput({
   };
 
   return (
-    <article>
-      <Label>{title}</Label>
+    <article className='flex flex-col gap-y-2'>
+      <Label className='text-base font-semibold'>{title}</Label>
       <Input min={min} type='number' value={value} onChange={handleChange} />
     </article>
   );
