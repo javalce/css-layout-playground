@@ -22,7 +22,7 @@ export function OptionsInput({
   return (
     <OptionContainer>
       <OptionLabel title={title} />
-      <Input min={min} type='number' value={value} onChange={handleChange} />
+      <Input aria-label={title} min={min} type='number' value={value} onChange={handleChange} />
     </OptionContainer>
   );
 }

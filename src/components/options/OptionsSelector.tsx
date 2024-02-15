@@ -31,7 +31,7 @@ export function OptionsSelector({
     <OptionContainer>
       <OptionLabel title={title} />
       <Select defaultValue={defaultValue} onValueChange={handleUpdateValue}>
-        <SelectTrigger>
+        <SelectTrigger aria-label={title}>
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent>
