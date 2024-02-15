@@ -9,13 +9,14 @@ import {
   FLEXBOX_WRAP,
 } from '@/models/layout';
 import { OptionsContainer } from './OptionsContainer';
+import { OptionsInput } from './OptionsInput';
 import { OptionsSelector } from './OptionsSelector';
 
 export function FlexboxOptions() {
-  const { flexboxDirection, flexboxWrap, flexboxJustifyContent, flexboxAlignItems, update } =
+  const { flexboxDirection, flexboxWrap, flexboxJustifyContent, flexboxAlignItems, gap, update } =
     useFlexbox();
 
-  const handleUpdate = (property: string, value: string) => {
+  const handleUpdate = (property: string, value: string | number) => {
     update({ [property]: value });
   };
 
@@ -51,6 +52,13 @@ export function FlexboxOptions() {
         placeholder='Select align items'
         property={FLEXBOX_LAYOUT_PROPERTIES.alignItems}
         title='Align Items'
+        onChange={handleUpdate}
+      />
+      <OptionsInput
+        min={0}
+        property={FLEXBOX_LAYOUT_PROPERTIES.gap}
+        title='Gap'
+        value={gap}
         onChange={handleUpdate}
       />
     </OptionsContainer>

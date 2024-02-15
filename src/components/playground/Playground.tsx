@@ -5,7 +5,8 @@ import { useFlexbox } from '@/hooks/flexbox.hook';
 import { Item } from './Item';
 
 export function Playground() {
-  const { flexboxDirection, flexboxWrap, flexboxJustifyContent, flexboxAlignItems } = useFlexbox();
+  const { flexboxDirection, flexboxWrap, flexboxJustifyContent, flexboxAlignItems, gap } =
+    useFlexbox();
   const { numItems } = useContainer();
 
   return (
@@ -16,6 +17,7 @@ export function Playground() {
         flexDirection: flexboxDirection,
         justifyContent: flexboxJustifyContent,
         alignItems: flexboxAlignItems,
+        gap: `${gap}px`,
       }}
     >
       {Array.from({ length: numItems }, (_, index) => (

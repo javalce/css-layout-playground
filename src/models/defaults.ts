@@ -11,6 +11,7 @@ export const FLEXBOX_DEFAULTS = {
   flexWrap: FLEXBOX_WRAP.wrap,
   justifyContent: FLEXBOX_JUSTIFY.flexStart,
   alignItems: FLEXBOX_ALIGN.stretch,
+  gap: 10,
   order: 0,
   flexGrow: 0,
   flexShrink: 1,

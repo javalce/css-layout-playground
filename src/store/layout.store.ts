@@ -27,6 +27,7 @@ export interface FlexboxLayoutContainerState {
   flexWrap: FlexboxWrap;
   justifyContent: FlexboxJustify;
   alignItems: FlexboxAlign;
+  gap: number;
 }
 
 export interface FlexboxItemLayoutState {
@@ -61,6 +62,7 @@ function getDefaultInitialState(): LayoutState {
     flexWrap: FLEXBOX_DEFAULTS.flexWrap,
     justifyContent: FLEXBOX_DEFAULTS.justifyContent,
     alignItems: FLEXBOX_DEFAULTS.alignItems,
+    gap: FLEXBOX_DEFAULTS.gap,
     order: Array.from({ length: DEFAULT_NUM_ITEMS }, () => FLEXBOX_DEFAULTS.order),
     flexGrow: Array.from({ length: DEFAULT_NUM_ITEMS }, () => FLEXBOX_DEFAULTS.flexGrow),
     flexShrink: Array.from({ length: DEFAULT_NUM_ITEMS }, () => FLEXBOX_DEFAULTS.flexShrink),

@@ -8,6 +8,7 @@ export const FLEXBOX_LAYOUT_PROPERTIES = {
   flexWrap: 'flexWrap',
   justifyContent: 'justifyContent',
   alignItems: 'alignItems',
+  gap: 'gap',
 } as const;
 
 export const FLEXBOX_DIRECTIONS = {

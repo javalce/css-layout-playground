@@ -1,6 +1,5 @@
 'use client';
 
-import type { FlexboxItemProperty } from '@/models/layout';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 
@@ -13,9 +12,9 @@ export function OptionsInput({
 }: {
   value: number;
   min: number;
-  property: FlexboxItemProperty;
+  property: string;
   title: string;
-  onChange: (property: FlexboxItemProperty, value: number) => void;
+  onChange: (property: string, value: number) => void;
 }) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(property, Number(e.currentTarget.value));
