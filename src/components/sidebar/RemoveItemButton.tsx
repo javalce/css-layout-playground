@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { useContainer } from '@/hooks/container.hook';
 
-export function RemoveItem() {
+export function RemoveItemButton() {
   const { selectedItemIndex, removeItem } = useContainer();
 
   return (
