@@ -1,3 +1,5 @@
+'use client';
+
 import { useContainer } from '@/hooks/container.hook';
 import { useItem } from '@/hooks/item.hook';
 import { cn } from '@/lib/utils';

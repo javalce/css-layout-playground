@@ -1,11 +1,4 @@
-'use client';
-
 import { GithubIcon } from '@/components/icons/Github';
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuList,
-} from '@/components/ui/navigation-menu';
 import { ResetLayoutButton } from './ResetLayoutButton';
 import { ThemeToggleButton } from './ThemeToggleButton';
 
@@ -19,13 +12,7 @@ export function Header() {
           </a>
         </div>
         <div className='flex flex-1 items-center justify-between space-x-2 md:justify-end'>
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <ResetLayoutButton />
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+          <ResetLayoutButton />
           <nav className='flex items-center'>
             <a
               href='https://github.com/javalce/css-layout-playground'

@@ -1,5 +1,3 @@
-'use client';
-
 import { Input } from '@/components/ui/input';
 import { OptionContainer } from './OptionContainer';
 import { OptionLabel } from './OptionLabel';
