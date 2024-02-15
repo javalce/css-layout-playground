@@ -36,7 +36,7 @@
 
 ![CSS Layout Playground screenshot](https://raw.githubusercontent.com/javalce/css-layout-playground/master/screenshot.png)
 
-CSS Layout Playground is a CSS playground for flexbox and grid layout. It allows you to quickly test your layout ideas and translate them into code.
+CSS Layout Playground is a CSS playground for flexbox layout. It allows you to quickly test your layout ideas and translate them into code.
 
 <p align="right"><a href="#top">Back to top 🔼</a></p>
 
