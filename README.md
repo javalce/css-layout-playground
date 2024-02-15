@@ -34,7 +34,7 @@
 
 ## About The Project
 
-![CSS Layout Playground screenshot](https://raw.githubusercontent.com/javalce/css-layout-playground/master/screenshot.png)
+![CSS Layout Playground screenshot](https://github.com/javalce/css-layout-playground/assets/56077652/bd29dff5-c287-448b-91bd-ed8196f52d5c)
 
 CSS Layout Playground is a CSS playground for flexbox layout. It allows you to quickly test your layout ideas and translate them into code.
 
