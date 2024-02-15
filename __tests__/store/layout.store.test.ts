@@ -1,23 +1,28 @@
+import { createWrapper } from '@/lib/test-utils';
 import {
   DEFAULT_NUM_ITEMS,
   DEFAULT_SELECTED_ITEM_INDEX,
   FLEXBOX_DEFAULTS,
 } from '@/models/defaults';
+import { LayoutStoreProvider } from '@/providers/LayoutStoreProvider';
 import { useLayoutStore } from '@/store/layout.store';
 import { act, renderHook } from '@testing-library/react';
 
 describe('LayoutStore', () => {
   it('should initialize with default values', () => {
-    const { result } = renderHook(() => useLayoutStore());
+    const { result } = renderHook(() => useLayoutStore((state) => state), {
+      wrapper: createWrapper(LayoutStoreProvider),
+    });
 
     expect(result.current.numItems).toEqual(DEFAULT_NUM_ITEMS);
     expect(result.current.selectedItemIndex).toEqual(DEFAULT_SELECTED_ITEM_INDEX);
     expect(result.current.flexDirection).toEqual(FLEXBOX_DEFAULTS.flexDirection);
-    // Add more assertions for the rest of the default state values
   });
 
   it('should select an item', () => {
-    const { result } = renderHook(() => useLayoutStore());
+    const { result } = renderHook(() => useLayoutStore((state) => state), {
+      wrapper: createWrapper(LayoutStoreProvider),
+    });
 
     act(() => {
       result.current.selectItem(1);
@@ -27,7 +32,9 @@ describe('LayoutStore', () => {
   });
 
   it('should add an item', () => {
-    const { result } = renderHook(() => useLayoutStore());
+    const { result } = renderHook(() => useLayoutStore((state) => state), {
+      wrapper: createWrapper(LayoutStoreProvider),
+    });
 
     act(() => {
       result.current.addItem();
@@ -38,7 +45,9 @@ describe('LayoutStore', () => {
   });
 
   it('should remove an item', () => {
-    const { result } = renderHook(() => useLayoutStore());
+    const { result } = renderHook(() => useLayoutStore((state) => state), {
+      wrapper: createWrapper(LayoutStoreProvider),
+    });
 
     act(() => {
       result.current.selectItem(1);
@@ -50,7 +59,9 @@ describe('LayoutStore', () => {
   });
 
   it('should reset to default values', () => {
-    const { result } = renderHook(() => useLayoutStore());
+    const { result } = renderHook(() => useLayoutStore((state) => state), {
+      wrapper: createWrapper(LayoutStoreProvider),
+    });
 
     act(() => {
       result.current.addItem();
@@ -68,7 +79,9 @@ describe('LayoutStore', () => {
   });
 
   it('should update flexbox container', () => {
-    const { result } = renderHook(() => useLayoutStore());
+    const { result } = renderHook(() => useLayoutStore((state) => state), {
+      wrapper: createWrapper(LayoutStoreProvider),
+    });
 
     act(() => {
       result.current.updateFlexboxContainer({ flexDirection: 'column' });
@@ -78,7 +91,9 @@ describe('LayoutStore', () => {
   });
 
   it('should update flexbox item', () => {
-    const { result } = renderHook(() => useLayoutStore());
+    const { result } = renderHook(() => useLayoutStore((state) => state), {
+      wrapper: createWrapper(LayoutStoreProvider),
+    });
 
     act(() => {
       result.current.updateFlexboxItem(1, 'order', { order: 2 });
