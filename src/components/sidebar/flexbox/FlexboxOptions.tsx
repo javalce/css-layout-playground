@@ -8,9 +8,9 @@ import {
   FLEXBOX_LAYOUT_PROPERTIES,
   FLEXBOX_WRAP,
 } from '@/models/layout';
-import { OptionsContainer } from './OptionsContainer';
-import { OptionsInput } from './OptionsInput';
-import { OptionsSelector } from './OptionsSelector';
+import { OptionsContainer } from '../options/OptionsContainer';
+import { OptionsInput } from '../options/OptionsInput';
+import { OptionsSelector } from '../options/OptionsSelector';
 
 export function FlexboxOptions() {
   const { flexboxDirection, flexboxWrap, flexboxJustifyContent, flexboxAlignItems, gap, update } =

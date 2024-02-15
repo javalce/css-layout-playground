@@ -1,8 +1,8 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AddItem } from './AddItem';
-import { FlexboxItemOptions } from './FlexboxItemOptions';
-import { FlexboxOptions } from './FlexboxOptions';
 import { RemoveItem } from './RemoveItem';
+import { FlexboxItemOptions } from './flexbox/FlexboxItemOptions';
+import { FlexboxOptions } from './flexbox/FlexboxOptions';
 
 export function Sidebar() {
   return (
