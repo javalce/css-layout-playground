@@ -17,11 +17,11 @@ export function Playground() {
         flexDirection: flexboxDirection,
         justifyContent: flexboxJustifyContent,
         alignItems: flexboxAlignItems,
-        gap: `${gap}px`,
+        gap: `${gap.toString()}px`,
       }}
     >
       {Array.from({ length: numItems }, (_, index) => (
-        <Item key={index} index={index} label={`${index + 1}`} />
+        <Item key={index} index={index} label={(index + 1).toString()} />
       ))}
     </main>
   );
